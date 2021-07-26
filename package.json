@@ -1,0 +1,21 @@
+{
+  "name": "nats-streaming-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "publish": "ts-node-dev --notify false src/publisher.ts",
+    "listen": "ts-node-dev --ntoify false src/listener.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/charlallison/nats-streaming-test.git"
+  },
+  "keywords": [],
+  "author": "Charles Allison",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/charlallison/nats-streaming-test/issues"
+  },
+  "homepage": "https://github.com/charlallison/nats-streaming-test#readme"
+}
