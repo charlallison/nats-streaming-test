@@ -9,7 +9,10 @@ const stan = nats.connect('test-cluster', randomBytes(4).toString('hex'), {
 stan.on('connect', () => {
     console.log('Listener connected to nats');
 
-    const subscription = stan.subscribe('convertUnit:created', 'myqueueGroup');
+    const options = stan.subscriptionOptions()
+    .setManualAckMode(true); // used to indicate that the serve should continue sending the event to the subscribers until the msg.ack() method is called.
+
+    const subscription = stan.subscribe('convertUnit:created', 'myqueueGroup', options);
     subscription.on('message', (msg: Message) => {
         console.log('message received: ');
         const data = msg.getData();
@@ -17,5 +20,8 @@ stan.on('connect', () => {
         if(typeof data === 'string') {
             console.log(`Received event #${msg.getSequence()} with data: ${data}`)
         }
+
+        // used to acknowledge receipt of the message.
+        msg.ack();
     })
 });
