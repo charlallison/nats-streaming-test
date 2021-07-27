@@ -9,7 +9,7 @@ const stan = nats.connect('test-cluster', randomBytes(4).toString('hex'), {
 stan.on('connect', () => {
     console.log('Listener connected to nats');
 
-    const subscription = stan.subscribe('convertUnit:created');
+    const subscription = stan.subscribe('convertUnit:created', 'myqueueGroup');
     subscription.on('message', (msg: Message) => {
         console.log('message received: ');
         const data = msg.getData();
