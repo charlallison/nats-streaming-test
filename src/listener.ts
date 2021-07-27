@@ -1,8 +1,8 @@
 import nats, {Message} from 'node-nats-streaming'
-
+import { randomBytes } from 'crypto'
 console.clear();
 
-const stan = nats.connect('test-cluster', 'listener', {
+const stan = nats.connect('test-cluster', randomBytes(4).toString('hex'), {
     url: 'http://localhost:5222'
 });
 
